@@ -67,7 +67,7 @@ Add this line
 
 clone repository
 ```
-git clone git@gitlab.com:mehhlol/salt-vagrant-minions.git
+git clone git@github.com:cmehx/salt-vagrant-example.git
 ```
 
 Launch bootstrap installer
