@@ -12,11 +12,11 @@ Vagrant.configure("2") do |config|
       vb.cpus = 1
     end
   end
-  config.vm.define "salt_client_two" do |salt_client_two|
-    salt_client_two.vm.box = "generic/ubuntu2204"
-    salt_client_two.vm.hostname = 'minion'
-    salt_client_two.vm.network "public_network"
-    salt_client_two.vm.provider "virtualbox" do |vb|
+  config.vm.define "salt_master" do |salt_master|
+    salt_master.vm.box = "generic/ubuntu2204"
+    salt_master.vm.hostname = 'master'
+    salt_master.vm.network "public_network"
+    salt_master.vm.provider "virtualbox" do |vb|
       vb.memory = 1024
       vb.cpus = 1
     end
