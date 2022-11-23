@@ -8,7 +8,7 @@ local as master and n vagrants vm for its minions
 - Vagrant
 - Virtual Box
 - Python
-- Ubuntu local env as root user
+- Ubuntu local env as root user / second vagrant vm can also be used as master
 
 ## Getting started
 
