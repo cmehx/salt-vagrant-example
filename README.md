@@ -9,10 +9,16 @@ local as master and n vagrants vm for its minions
 - Virtual Box
 - Python
 - Ubuntu local env as root user / second vagrant vm can also be used as master
+  (In this example I used my local env on ubuntu as the salt master because of
+  ram issue)
+  (You should be able to reproduce the master install in the second vm defined
+  on Vagrantfile as your salt master instead of your local machine)
 
 ## Getting started
 
-Official documentation
+Every step of this installation can be found on the official documentation
+website
+
 https://docs.saltproject.io/salt/install-guide/en/latest/topics/bootstrap.html
 
 #### Setup Salt Master
