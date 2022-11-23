@@ -1,0 +1,3 @@
+.vagrant/
+install_salt.sh
+install_salt_sha256
