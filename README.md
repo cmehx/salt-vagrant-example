@@ -73,7 +73,7 @@ Add this line
 
 clone repository
 ```
-git clone git@github.com:cmehx/salt-vagrant-example.git
+git clone git@gitlab.com:mehhlol/salt-vagrant-minions.git
 ```
 
 Launch bootstrap installer
@@ -139,3 +139,23 @@ Result should be of this kind:
 vagrant-salt-minion:
     3005.1
 ```
+
+## Usage Example
+
+To install docker to your minions
+```
+salt '*' pkg.install docker.io
+```
+
+To install a package from file create a file at /srv/salt/emacs.sls
+add this inside
+```
+emacs:
+  pkg.installed
+```
+then run:
+```
+salt '*' state.sls emacs
+```
+
+
