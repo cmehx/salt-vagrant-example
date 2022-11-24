@@ -33,8 +33,39 @@ salt '*' mysql.db_check dbname
 salt '*' mysql.db_create 'test'
 if mysql not working restart minion service and master
 
-grain manipulation goest to /etc/salt/grain
+grain default command will read and write from /etc/salt/grain
 salt -G 'os:UBUNTU' test.version //to test version by os
 salt -G 'os:UBUNTU' grains.item uuid // display grant uuid info for ubuntu os minion
 salt '*' saltutil.clear_cache
+
+GRAIN Cli ex
+
+```
 salt -G 'os:UBUNTU' grains.setval env dev
+salt -G 'env:dev' grains.item uuid
+vagrant-salt-minion:
+    ----------
+    uuid:
+        05a38cc4-4d2c-4f2c-9cbd-97af5563c3a1
+```
+
+GRAIN file ex
+
+```
+vi /etc/salt/minion.d/grains.conf
+```
+
+add:
+```
+grains:
+  lol:dev
+```
+
+Restart services and run:
+```
+salt -G 'lol:dev' grains.item env
+vagrant-salt-minion:
+    ----------
+    env:
+        dev
+```
