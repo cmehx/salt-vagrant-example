@@ -21,6 +21,9 @@ website
 
 https://docs.saltproject.io/salt/install-guide/en/latest/topics/bootstrap.html
 
+doc for mysql install on minion and conf
+https://www.digitalocean.com/community/tutorials/saltstack-infrastructure-creating-salt-states-for-mysql-database-servers
+
 #### Setup Salt Master
 
 - To install salt master on your local machine run:

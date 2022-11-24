@@ -1,4 +1,16 @@
-salt '*' pkg.install docker.io
-salt '*' pkg.install tree
-salt vagrant-salt-minion state.sls emacs
-salt '*' pkg.list_pkgs
+salt '*' pkg.install docker.io // install docker cli
+salt '*' pkg.install tree // install tree cli
+salt vagrant-salt-minion state.sls emacs // install pkg from config file
+salt '*' pkg.list_pkgs // list install pkgs
+salt '*' sys.doc ssh // get the doc
+salt '*' service.status docker // same as systemctl
+salt '*' pkg.install mysql-server
+salt '*' pkg.install python3-mysqldb // require for mysql salt module
+salt '*' pkg.install debconf-utils
+salt '*' mysql.db_list
+salt '*' mysql.db_check dbname
+if mysql not working restart minion service and master
+salt -G 'os:UBUNTU' test.version //to test version by os
+salt -G 'os:UBUNTU' grains.item uuid // display grant uuid info for ubuntu os minion
+salt '*' saltutil.clear_cache
+salt -G 'os:UBUNTU' grains.setval env dev
