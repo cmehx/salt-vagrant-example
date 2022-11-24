@@ -3,7 +3,7 @@
 Student project to learn how to deploy a salt manager and its minions using
 local as master and n vagrants vm for its minions
 
-# Requirements
+## Requirements
 
 - Vagrant
 - Virtual Box
