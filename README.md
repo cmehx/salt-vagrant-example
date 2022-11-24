@@ -1,4 +1,4 @@
-# A Salt Example using Vagrant Vms
+# A Salt example using Vagrant
 
 Student project to learn how to deploy a salt manager and its minions using
 local as master and n vagrants vm for its minions
