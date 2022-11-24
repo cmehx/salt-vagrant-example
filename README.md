@@ -21,9 +21,6 @@ website
 
 https://docs.saltproject.io/salt/install-guide/en/latest/topics/bootstrap.html
 
-doc for mysql install on minion and conf
-https://www.digitalocean.com/community/tutorials/saltstack-infrastructure-creating-salt-states-for-mysql-database-servers
-
 #### Setup Salt Master
 
 - To install salt master on your local machine run:
@@ -145,10 +142,16 @@ vagrant-salt-minion:
 
 ## Usage Example
 
+### Install a pkg
+
+#### CLI
+
 To install docker to your minions
 ```
 salt '*' pkg.install docker.io
 ```
+
+#### File
 
 To install a package from file create a file at /srv/salt/emacs.sls
 add this inside
@@ -161,4 +164,44 @@ then run:
 salt '*' state.sls emacs
 ```
 
+##### Other tools
+```
+salt '*' pkg.list_pkgs // list install pkgs
+salt '*' sys.doc ssh // get the doc
+salt '*' service.status docker // same as systemctl
+```
 
+##### Mysql Example
+
+Salt mysql module offial doc:
+https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.mysql.html
+
+To get more information mysql configuration:
+https://www.digitalocean.com/community/tutorials/saltstack-infrastructure-creating-salt-states-for-mysql-database-servers
+
+- Install
+```
+salt '*' pkg.install mysql-server
+salt '*' pkg.install python3-mysqldb // require for mysql salt module
+salt '*' pkg.install debconf-utils
+```
+
+- Restart minion and master services
+
+- Check Mysql install
+
+run:
+```
+salt '*' mysql.db_create 'test'
+salt '*' mysql.db_list
+```
+
+result:
+```
+vagrant-salt-minion:
+    - information_schema
+    - mysql
+    - performance_schema
+    - sys
+    - test
+```
