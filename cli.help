@@ -1,0 +1,4 @@
+salt '*' pkg.install docker.io
+salt '*' pkg.install tree
+salt vagrant-salt-minion state.sls emacs
+salt '*' pkg.list_pkgs
