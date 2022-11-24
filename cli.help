@@ -69,3 +69,100 @@ vagrant-salt-minion:
     env:
         dev
 ```
+
+
+STATES - SCRIPTS
+state.sls refers to the file type (sls)
+emacs is the file name containing install configuration informations
+emacs.sls file must be located /srv/salt/
+webserver.sls
+web:
+  pkg.latest:
+    - pkgs:
+      - nginx
+      - php5-fpm
+      - php5-cli
+      - php5-gd
+      - php5-mcrypt
+      - php5-mysql
+
+install-php-mcrypt-fpm:
+  file.symlink:
+    - name: /etc/php5/fpm/conf.d/20-mcrypt.ini
+    - target: /etc/php5/mods-available/mcrypt.ini
+    - require:
+      - pkg: web
+
+install-php-mcrypt-cli:
+  file.symlink:
+    - name: /etc/php5/cli/conf.d/20-mcrypt.ini
+    - target: /etc/php5/mods-available/mcrypt.ini
+    - require:
+      - pkg: web
+
+
+/srv/salt/web.sls
+
+nginx:
+  pkg.latest:
+    - refresh: True
+
+  service.running:
+    - reload: True
+    - enable: True
+    - watch:
+      - pkg: nginx
+
+/etc/nginx/sites-available/webserver.conf:
+  file.managed:
+    - source: salt://files/templates/nginx.conf
+    - template: jinja
+    - context:
+      domain: mehdi
+    - require_in:
+      - file: /etc/nginx/sites-enabled/webserver.conf
+
+/etc/nginx/sites-enabled/webserver.conf:
+  file.symlink:
+    - target: /etc/nginx/sites-available/webserver.conf
+    - require:
+      - pkg: nginx
+
+/etc/nginx/sites-enabled/default:
+  file:
+    - absent
+    - require:
+      - pkg: nginx
+
+/etc/nginx/sites-enabled/webserver.conf
+
+server {
+       listen 81;
+       listen [::]:81;
+
+       server_name mehdi.com;
+
+       root /var/www/html/;
+       index index.html;
+
+       location / {
+               try_files $uri $uri/ =404;
+       }
+}
+
+/srv/salt/files/templates/nginx.conf
+server {
+       listen 81;
+       listen [::]:81;
+
+       server_name mehdi.com;
+
+       root /var/www/html/;
+       index index.html;
+
+       location / {
+               try_files $uri $uri/ =404;
+       }
+}
+
+/srv/salt/top.sls
