@@ -169,6 +169,7 @@ salt '*' state.sls emacs
 salt '*' pkg.list_pkgs // list install pkgs
 salt '*' sys.doc ssh // get the doc
 salt '*' service.status docker // same as systemctl
+salt -G 'os:UBUNTU' test.version //to test version by os
 ```
 
 ##### Mysql Example
@@ -206,14 +207,14 @@ vagrant-salt-minion:
     - test
 ```
 
-### GRAINS
+### Grains
 
 grain default command will read and write from /etc/salt/grain
-salt -G 'os:UBUNTU' test.version //to test version by os
-salt -G 'os:UBUNTU' grains.item uuid // display grant uuid info for ubuntu os minion
-salt '*' saltutil.clear_cache
-
-#### GRAIN Cli ex
+to display grains uuid info for ubuntu os minions
+```
+salt -G 'os:UBUNTU' grains.item uuid 
+```
+#### Grains cli ex
 
 ```
 salt -G 'os:UBUNTU' grains.setval env dev
@@ -224,7 +225,7 @@ vagrant-salt-minion:
         05a38cc4-4d2c-4f2c-9cbd-97af5563c3a1
 ```
 
-#### GRAIN file ex
+#### Grains file ex
 
 ```
 vi /etc/salt/minion.d/grains.conf
