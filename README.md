@@ -209,11 +209,16 @@ vagrant-salt-minion:
 
 ### Grains
 
-grain default command will read and write from /etc/salt/grain
-to display grains uuid info for ubuntu os minions
+Default grains configurations are located at:
+```
+/etc/salt/grain
+```
+
+To display grains uuid info for ubuntu os minions run:
 ```
 salt -G 'os:UBUNTU' grains.item uuid 
 ```
+
 #### Grains cli ex
 
 ```
